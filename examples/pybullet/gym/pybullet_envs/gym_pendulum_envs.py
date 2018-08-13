@@ -13,7 +13,7 @@ class InvertedPendulumBulletEnv(MJCFBaseBulletEnv):
 		self.stateId=-1
 
 	def create_single_player_scene(self, bullet_client):
-		return SingleRobotEmptyScene(bullet_client, gravity=9.8, timestep=0.0165, frame_skip=1)
+		return SingleRobotEmptyScene(bullet_client, gravity=9.8, timestep=0.05, frame_skip=1)
 
 	def _reset(self):
 		if (self.stateId>=0):
@@ -32,7 +32,7 @@ class InvertedPendulumBulletEnv(MJCFBaseBulletEnv):
 		vel_penalty = 0
 		if self.robot.swingup:
 			reward = np.cos(self.robot.theta)
-			done = False
+			done = np.abs(state[0]) > 4.99
 		else:
 			reward = 1.0
 			done = np.abs(self.robot.theta) > .2
