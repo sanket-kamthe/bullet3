@@ -45,7 +45,8 @@ class InvertedPendulum(MJCFBasedRobot):
 
 		return np.array([
 			x, vx,
-			np.cos(self.theta), np.sin(self.theta), theta_dot
+			# np.cos(self.theta), np.sin(self.theta),
+			theta_dot, self.theta
 			])
 
 class InvertedPendulumSwingup(InvertedPendulum):
