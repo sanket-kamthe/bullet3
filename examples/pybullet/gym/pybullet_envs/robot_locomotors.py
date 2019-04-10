@@ -59,11 +59,11 @@ class WalkerBase(MJCFBasedRobot):
 		)
 		vx, vy, vz = np.dot(rot_speed, self.robot_body.speed())  # rotate speed back to body point of view
 
-		more = np.array([ z-self.initial_z,
+		more = np.array([ z,
 			np.sin(angle_to_target), np.cos(angle_to_target),
 			0.3* vx , 0.3* vy , 0.3* vz ,  # 0.3 is just scaling typical speed into -1..+1, no physical sense here
 			r, p], dtype=np.float32)
-		return np.clip( np.concatenate([more] + [j] + [self.feet_contact]), -5, +5)
+		return np.clip(np.concatenate([more] + [j] + [self.feet_contact]), -5, +5)
 
 	def calc_potential(self):
 		# progress in potential field is speed*dt, typical speed is about 2-3 meter per second, this potential will change 2-3 per frame (not per second),
@@ -119,11 +119,11 @@ class HalfCheetah(WalkerBase):
 	def robot_specific_reset(self, bullet_client):
 		WalkerBase.robot_specific_reset(self, bullet_client)
 		self.jdict["bthigh"].power_coef = 120.0
-		self.jdict["bshin"].power_coef  = 90.0
-		self.jdict["bfoot"].power_coef  = 60.0
+		self.jdict["bshin"].power_coef = 90.0
+		self.jdict["bfoot"].power_coef = 60.0
 		self.jdict["fthigh"].power_coef = 140.0
-		self.jdict["fshin"].power_coef  = 60.0
-		self.jdict["ffoot"].power_coef  = 30.0
+		self.jdict["fshin"].power_coef = 60.0
+		self.jdict["ffoot"].power_coef = 30.0
 
 
 class Ant(WalkerBase):
