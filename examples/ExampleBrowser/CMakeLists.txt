@@ -71,6 +71,11 @@ IF (BUILD_SHARED_LIBS)
 	ENDIF(WIN32)
 ENDIF(BUILD_SHARED_LIBS)
 
+INSTALL(TARGETS BulletExampleBrowserLib
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib${LIB_SUFFIX}
+        ARCHIVE DESTINATION lib${LIB_SUFFIX})
+
 ####################
 #
 # Bullet Example Browser main app
@@ -139,12 +144,19 @@ SET(ExtendedTutorialsSources
 )
 
 SET(BulletExampleBrowser_SRCS
+        ../BulletRobotics/FixJointBoxes.cpp
+
+        ../BulletRobotics/BoxStack.cpp
+        ../BulletRobotics/JointLimit.cpp
+        # ../BulletRobotics/GraspBox.cpp
 
 	../TinyRenderer/geometry.cpp
 	../TinyRenderer/model.cpp
 	../TinyRenderer/tgaimage.cpp
 	../TinyRenderer/our_gl.cpp
 	../TinyRenderer/TinyRenderer.cpp
+	../SharedMemory/plugins/collisionFilterPlugin/collisionFilterPlugin.cpp
+	../SharedMemory/plugins/collisionFilterPlugin/collisionFilterPlugin.h
 	../SharedMemory/plugins/pdControlPlugin/pdControlPlugin.cpp
 	../SharedMemory/plugins/pdControlPlugin/pdControlPlugin.h
 	../SharedMemory/plugins/tinyRendererPlugin/tinyRendererPlugin.cpp
@@ -195,6 +207,12 @@ SET(BulletExampleBrowser_SRCS
 	../MultiThreadedDemo/MultiThreadedDemo.h
 	../MultiThreadedDemo/CommonRigidBodyMTBase.cpp
 	../MultiThreadedDemo/CommonRigidBodyMTBase.h
+	../BlockSolver/btBlockSolver.cpp
+	../BlockSolver/btBlockSolver.h
+	../BlockSolver/BlockSolverExample.cpp
+	../BlockSolver/BlockSolverExample.h
+	../BlockSolver/RigidBodyBoxes.cpp
+	../BlockSolver/RigidBodyBoxes.h
 	../Tutorial/Tutorial.cpp
 	../Tutorial/Tutorial.h
 	../Tutorial/Dof6ConstraintTutorial.cpp
@@ -341,7 +359,7 @@ SET(BulletExampleBrowser_SRCS
 
 	../ThirdPartyLibs/stb_image/stb_image.cpp
 	../ThirdPartyLibs/stb_image/stb_image.h
-	
+	../ThirdPartyLibs/stb_image/stb_image_write.cpp
 	../ThirdPartyLibs/Wavefront/tiny_obj_loader.cpp
 	
 	../ThirdPartyLibs/tinyxml2/tinyxml2.cpp
