@@ -13,6 +13,7 @@ class InvertedPendulum(MJCFBasedRobot):
 		self.j1 = self.jdict["hinge"]
 		u = self.np_random.uniform(low=-.1, high=.1)
 		self.j1.reset_current_position( u if not self.swingup else 3.1415+u , 0)
+		self.slider.reset_current_position(0.0 + u, 0.0)
 		self.j1.set_motor_torque(0)
 
 	def apply_action(self, a):
