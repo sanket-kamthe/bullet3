@@ -1,5 +1,7 @@
 
 SET(SharedMemory_SRCS
+	plugins/collisionFilterPlugin/collisionFilterPlugin.cpp
+	plugins/collisionFilterPlugin/collisionFilterPlugin.h
 	plugins/pdControlPlugin/pdControlPlugin.cpp
 	plugins/pdControlPlugin/pdControlPlugin.h
 	b3RobotSimulatorClientAPI_NoDirect.cpp
@@ -386,8 +388,6 @@ ELSE(WIN32 OR APPLE)
                openvr_api
                pthread
                ${DL}
-               ${OPENGL_gl_LIBRARY}
-               ${OPENGL_glu_LIBRARY}
                Bullet3Common
                BulletWorldImporter
                BulletInverseDynamicsUtils
