@@ -4,7 +4,7 @@ import numpy as np
 class InvertedPendulum(MJCFBasedRobot):
 	swingup = False
 	def __init__(self):
-		MJCFBasedRobot.__init__(self, 'inverted_pendulum.xml', 'cart', action_dim=1, obs_dim=5)
+		MJCFBasedRobot.__init__(self, 'inverted_pendulum.xml', 'cart', action_dim=1, obs_dim=4)
 
 	def robot_specific_reset(self, bullet_client):
 		self._p = bullet_client
