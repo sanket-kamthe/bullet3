@@ -34,7 +34,7 @@ class InvertedPendulumBulletEnv(MJCFBaseBulletEnv):
     vel_penalty = 0
     if self.robot.swingup:
       reward = np.cos(self.robot.theta)
-      done = False
+      done = np.abs(state[0]) > 4.99
     else:
       reward = 1.0
       done = np.abs(self.robot.theta) > .2
