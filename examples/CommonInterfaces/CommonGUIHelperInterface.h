@@ -48,7 +48,7 @@ struct GUIHelperInterface
 	virtual void changeScaling(int instanceUid, const double scaling[3]) {}
 	virtual void changeSpecularColor(int instanceUid, const double specularColor[3]) {}
 	virtual void changeTexture(int textureUniqueId, const unsigned char* rgbTexels, int width, int height) {}
-	virtual void updateShape(int shapeIndex, float* vertices) {}
+	virtual void updateShape(int shapeIndex, float* vertices, int numVertices) {}
 	virtual int getShapeIndexFromInstance(int instanceUid) { return -1; }
 	virtual void replaceTexture(int shapeIndex, int textureUid) {}
 	virtual void removeTexture(int textureUid) {}
@@ -123,6 +123,7 @@ struct GUIHelperInterface
 	virtual void dumpFramesToVideo(const char* mp4FileName){};
 	virtual void drawDebugDrawerLines(){}
 	virtual void clearLines(){}
+	virtual bool isRemoteVisualizer() { return false; }
 };
 
 ///the DummyGUIHelper does nothing, so we can test the examples without GUI/graphics (in 'console mode')
